@@ -39,11 +39,20 @@ pattern = {
     { field = "target.task.command", values = {"bash"}, count = 1 },
 }
 
+--grouper1 = grouper.new_pattern_matcher(
+--    {"observer.host.ip"},
+--    {"observer.host.ip"},
+--    pattern,
+--    "@timestamp",
+--    "1m",
+--    on_grouped
+--)
+
 grouper1 = grouper.new_pattern_matcher(
-    {"observer.host.ip"},
-    {"observer.host.ip"},
-    pattern,
-    "@timestamp,RFC3339Nano",
-    "1m",
-    on_grouped
+  {"observer.host.ip"},
+  {"observer.host.ip"}, 
+  {"@timestamp"},
+  pattern,
+  "@timestamp",
+  on_grouped()
 )
